@@ -95,13 +95,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-These is a necessary software that you need to install on your OS in order to run this project locally.
+This is a necessary software that you need to install on your OS in order to run this project locally.
 * Docker
 
 
 ### Installation
 
-_Below is a list of instructions in other to install the project locally._
+_Below are step to successfully spin up the project locally._
 
 1. `Clone this repo and CD into the root directory`
 

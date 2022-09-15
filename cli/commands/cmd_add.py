@@ -81,7 +81,7 @@ def users():
 
     click.echo("Working...")
 
-    # Ensure we get about 100 unique random emails.
+    # Ensure we get about 1000 unique random emails.
     for _ in range(0, INITIAL_SEED_COUNT):
         random_emails.append(fake.email())
         print("emails => ", _)

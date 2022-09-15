@@ -23,5 +23,5 @@ DEBUG_TB_PROFILER_ENABLED=False
 
 SERVER_PORT = os.environ['SERVER_PORT']
 
-# INITIAL_SEED_COUNT=100
-INITIAL_SEED_COUNT=1001000
+# INITIAL_SEED_COUNT is the number of users to be created when you run the add all command
+INITIAL_SEED_COUNT=1000
