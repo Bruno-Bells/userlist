@@ -64,13 +64,6 @@ This project is an API endpoint that get a list of Users from a database.
 This project is a solution to a technical challenge and is built as per the requirements/problem statement which can be found <a href="https://gist.github.com/scabbiaza/82e9069cfa71c4d7aa9d9539a794a1db" target="_blank">HERE</a>.
 
 
-
-Use this url to <a href="#readme-top">View Live Demo</a>
-
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
 ### Built With
 
 Below is a list of technologies used to build the project.
@@ -101,31 +94,33 @@ This is a necessary software that you need to install on your OS in order to run
 
 ### Installation
 
-_Below are step to successfully spin up the project locally._
+_Below are steps to successfully spin up the project locally._
 
 1. `Clone this repo and CD into the root directory`
 
-2. `create a .env file in the project root and add you environment variables. look at` [.env.example](./.env.example) `to see the specification sample for this project`
+2. `create a .env file in the project root and add your environment variables. look at` [.env.example](./.env.example) `to see the specification sample for this project`
 
-   _setup commands. Run the following commands at the root of the project to spin it up_
+   _Setup Commands. Run the following commands at the root of the project to spin it up_
 
-2. ```
+3. ```
    docker-compose up --build
    ```
    
-3. ```
+4. ```
    docker exec -it project_website_1 bash 
    ```
    `project_website_1 is the name of the image in this case`
    
-4. ```
+5. ```
    pip install --editable .
    ```
    `type exit and hit enter to exit the bash and enter the following command:`
-5. ```
+6. ```
    docker-compose exec website project add all
    ```
-6. `open your web browser and enter the following url`
+   `this 6th command will populate the database, by default 1000 users will be generated when you run the command. To change this go to config/settings.py and increase the INITIAL_SEED_COUNT variable. then run this command again.`
+
+7. `open your web browser and enter the following url`
    ```
    http://localhost:5000/api/docs/
    ```
@@ -135,7 +130,7 @@ _Below are step to successfully spin up the project locally._
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_To play around with the API, please visit to the [Documentation](http://68.183.115.38:5000/api/docs/) _
+_To play around with the API, please visit to the [Documentation](http://68.183.115.38:5000/api/docs/) 
 
 
 <!-- LICENSE -->
