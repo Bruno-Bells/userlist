@@ -166,8 +166,10 @@ def users():
             }
             print(len(data))
             data.append(params)
-
-        _bulk_insert(UserModel, data, "users")
+        try:
+            _bulk_insert(UserModel, data, "users")
+        except:
+            continue
 
     return None # _bulk_insert(UserModel, data, "users")
 
