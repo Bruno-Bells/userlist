@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="http://localhost:5000/api/docs/" target="_blank">
+  <a href="http://68.183.115.38:5000/api/docs/" target="_blank">
     <img src="https://img.freepik.com/free-vector/gradient-api-illustration_23-2149368725.jpg?w=1060&t=st=1663195122~exp=1663195722~hmac=3a7503a684c20cde6aef60d2c9ee282c3d605702dfd44dd2d0459ad3daceecea" alt="Logo" width="180" height="150">
   </a>
 
@@ -17,7 +17,7 @@
   <p align="center">
     This repo contains an API code base.
     <br />
-    <a href="http://localhost:5000/api/docs/" target="_blank"><strong>Explore the API docs »</strong></a>
+    <a href="http://68.183.115.38:5000/api/docs/" target="_blank"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
  
@@ -135,7 +135,7 @@ _Below is a list of instructions in other to install the project locally._
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_To play around with the API, please visit to the [Documentation](http://localhost:5000/api/docs/) _
+_To play around with the API, please visit to the [Documentation](http://68.183.115.38:5000/api/docs/) _
 
 
 <!-- LICENSE -->
