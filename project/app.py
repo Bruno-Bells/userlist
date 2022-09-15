@@ -62,136 +62,136 @@ def create_app(settings_override=None):
                 "message": "Welcome to WEB API!"
             }), 200
 
-    @app.route("/addData")
-    def addData():
-        fake = Faker()
+    # @app.route("/addData")
+    # def addData():
+    #     fake = Faker()
         
-        def _bulk_insert(model, data, label):
-            """
-            Bulk insert data to a specific model and log it. This is much more
-            efficient than adding 1 row at a time in a loop.
+    #     def _bulk_insert(model, data, label):
+    #         """
+    #         Bulk insert data to a specific model and log it. This is much more
+    #         efficient than adding 1 row at a time in a loop.
 
-            :param model: Model being affected
-            :type model: SQLAlchemy
-            :param data: Data to be saved
-            :type data: list
-            :param label: Label for the output
-            :type label: str
-            :param skip_delete: Optionally delete previous records
-            :type skip_delete: bool
-            :return: None
-            """
-            with app.app_context():
-                # model.query.delete()
+    #         :param model: Model being affected
+    #         :type model: SQLAlchemy
+    #         :param data: Data to be saved
+    #         :type data: list
+    #         :param label: Label for the output
+    #         :type label: str
+    #         :param skip_delete: Optionally delete previous records
+    #         :type skip_delete: bool
+    #         :return: None
+    #         """
+    #         with app.app_context():
+    #             # model.query.delete()
 
-                db.session.commit()
-                db.engine.execute(model.__table__.insert(), data)
+    #             db.session.commit()
+    #             db.engine.execute(model.__table__.insert(), data)
 
-                # _log_status(model.query.count(), label)
+    #             # _log_status(model.query.count(), label)
 
-            return None
+    #         return None
 
-            """
-        Generate fake users.
-        """
-        random_emails = []
+    #         """
+    #     Generate fake users.
+    #     """
+    #     random_emails = []
         
-        gender_options = ["male", "female", "unknown"]
+    #     gender_options = ["male", "female", "unknown"]
 
-        # click.echo("Working...")
+    #     # click.echo("Working...")
 
-        # Ensure we get about 100 unique random emails.
-        for _ in range(0, 100):
-            random_emails.append(fake.email())
-            print("emails => ", _)
+    #     # Ensure we get about 100 unique random emails.
+    #     for _ in range(0, 100):
+    #         random_emails.append(fake.email())
+    #         print("emails => ", _)
 
-        random_emails = list(set(random_emails))
+    #     random_emails = list(set(random_emails))
 
-        chunks = [random_emails[x:x+10] for x in range(0, len(random_emails), 10)]
+    #     chunks = [random_emails[x:x+10] for x in range(0, len(random_emails), 10)]
 
-        for i in range(len(chunks)):
-            chunks_emails = chunks[i]
-            data = []
-            while True:
-                if len(chunks_emails) == 0:
-                    break
+    #     for i in range(len(chunks)):
+    #         chunks_emails = chunks[i]
+    #         data = []
+    #         while True:
+    #             if len(chunks_emails) == 0:
+    #                 break
 
-                fake_datetime = fake.date_time_between(
-                    start_date="-1y", end_date="now"
-                ).strftime("%s")
+    #             fake_datetime = fake.date_time_between(
+    #                 start_date="-1y", end_date="now"
+    #             ).strftime("%s")
 
-                created_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
-                    "%Y-%m-%dT%H:%M:%S Z"
-                )
+    #             created_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
+    #                 "%Y-%m-%dT%H:%M:%S Z"
+    #             )
 
-                DOB_fake_datetime = fake.date_of_birth(minimum_age=0, maximum_age=115).strftime("%s")
-                DOB = datetime.utcfromtimestamp(float(DOB_fake_datetime)).strftime(
-                    "%Y-%m-%dT%H:%M:%S Z"
-                )
+    #             DOB_fake_datetime = fake.date_of_birth(minimum_age=0, maximum_age=115).strftime("%s")
+    #             DOB = datetime.utcfromtimestamp(float(DOB_fake_datetime)).strftime(
+    #                 "%Y-%m-%dT%H:%M:%S Z"
+    #             )
 
-                random_percent = random.random()
+    #             random_percent = random.random()
 
-                if random_percent >= 0.9:
-                    role = "is_superuser"
-                if random_percent >= 0.7 and random_percent < 0.9:
-                    role = "admin"
-                else:
-                    role = "member"
+    #             if random_percent >= 0.9:
+    #                 role = "is_superuser"
+    #             if random_percent >= 0.7 and random_percent < 0.9:
+    #                 role = "admin"
+    #             else:
+    #                 role = "member"
 
-                email = chunks_emails.pop()
+    #             email = chunks_emails.pop()
 
-                random_percent = random.random()
+    #             random_percent = random.random()
 
-                if random_percent >= 0.5:
-                    random_trail = str(int(round((random.random() * 1000))))
-                    username = fake.first_name() + random_trail
-                else:
-                    username = None
+    #             if random_percent >= 0.5:
+    #                 random_trail = str(int(round((random.random() * 1000))))
+    #                 username = fake.first_name() + random_trail
+    #             else:
+    #                 username = None
 
-                fake_datetime = fake.date_time_between(
-                    start_date="-1y", end_date="now"
-                ).strftime("%s")
+    #             fake_datetime = fake.date_time_between(
+    #                 start_date="-1y", end_date="now"
+    #             ).strftime("%s")
 
-                current_sign_in_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
-                    "%Y-%m-%dT%H:%M:%S Z"
-                )
+    #             current_sign_in_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
+    #                 "%Y-%m-%dT%H:%M:%S Z"
+    #             )
 
-                is_deleted_ = False if random.random()  >= 0.05 else True
+    #             is_deleted_ = False if random.random()  >= 0.05 else True
 
-                is_active_ = True if random.random()  >= 0.05 else False
+    #             is_active_ = True if random.random()  >= 0.05 else False
 
-                fname = fake.first_name()
-                lname = fake.last_name()
+    #             fname = fake.first_name()
+    #             lname = fake.last_name()
 
-                params = {
-                    "created_on": created_on,
-                    "updated_on": created_on,
-                    "role": role,
-                    "email": email,
-                    "username": username,
-                    "firstname": fname,
-                    "lastname": lname,
-                    'date_of_birth': DOB,
-                    "password": UserModel.encrypt_password("password"),
-                    "sign_in_count": random.random() * 100,
-                    "current_sign_in_on": current_sign_in_on,
-                    "current_sign_in_ip": fake.ipv4(),
-                    "last_sign_in_on": current_sign_in_on,
-                    "last_sign_in_ip": fake.ipv4(),
-                    'is_deleted': is_deleted_,
-                    'is_active': is_active_,
-                    "phone_number": fake.phone_number(),
-                    "gender": random.choice(gender_options),
-                }
-                print(len(data))
-                data.append(params)
+    #             params = {
+    #                 "created_on": created_on,
+    #                 "updated_on": created_on,
+    #                 "role": role,
+    #                 "email": email,
+    #                 "username": username,
+    #                 "firstname": fname,
+    #                 "lastname": lname,
+    #                 'date_of_birth': DOB,
+    #                 "password": UserModel.encrypt_password("password"),
+    #                 "sign_in_count": random.random() * 100,
+    #                 "current_sign_in_on": current_sign_in_on,
+    #                 "current_sign_in_ip": fake.ipv4(),
+    #                 "last_sign_in_on": current_sign_in_on,
+    #                 "last_sign_in_ip": fake.ipv4(),
+    #                 'is_deleted': is_deleted_,
+    #                 'is_active': is_active_,
+    #                 "phone_number": fake.phone_number(),
+    #                 "gender": random.choice(gender_options),
+    #             }
+    #             print(len(data))
+    #             data.append(params)
 
-            _bulk_insert(UserModel, data, "users")
+    #         _bulk_insert(UserModel, data, "users")
             # with open('tttt.txt', 'a') as f:
             #     f.write(f"added {i}")
-        return jsonify({
-                "message": "added"
-            }), 200
+        # return jsonify({
+        #         "message": "added"
+        #     }), 200
     
     app.register_blueprint(user, url_prefix="/user")
     

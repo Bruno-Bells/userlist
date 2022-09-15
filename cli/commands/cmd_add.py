@@ -77,7 +77,7 @@ def users():
     Generate fake users.
     """
     random_emails = []
-    data = []
+    # data = []
 
     click.echo("Working...")
 
@@ -88,82 +88,88 @@ def users():
 
     random_emails = list(set(random_emails))
 
+    chunks = [random_emails[x:x+100] for x in range(0, len(random_emails), 100)]
 
-    while True:
-        if len(random_emails) == 0:
-            break
+    for i in range(len(chunks)):
+        chunks_emails = chunks[i]
+        data = []
+        while True:
+            if len(chunks_emails) == 0:
+                break
 
-        fake_datetime = fake.date_time_between(
-            start_date="-1y", end_date="now"
-        ).strftime("%s")
+            fake_datetime = fake.date_time_between(
+                start_date="-1y", end_date="now"
+            ).strftime("%s")
 
-        created_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
-            "%Y-%m-%dT%H:%M:%S Z"
-        )
+            created_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
+                "%Y-%m-%dT%H:%M:%S Z"
+            )
 
-        DOB_fake_datetime = fake.date_of_birth(minimum_age=0, maximum_age=115).strftime("%s")
-        DOB = datetime.utcfromtimestamp(float(DOB_fake_datetime)).strftime(
-            "%Y-%m-%dT%H:%M:%S Z"
-        )
+            DOB_fake_datetime = fake.date_of_birth(minimum_age=0, maximum_age=115).strftime("%s")
+            DOB = datetime.utcfromtimestamp(float(DOB_fake_datetime)).strftime(
+                "%Y-%m-%dT%H:%M:%S Z"
+            )
 
-        random_percent = random.random()
+            random_percent = random.random()
 
-        if random_percent >= 0.9:
-            role = "is_superuser"
-        if random_percent >= 0.7 and random_percent < 0.9:
-            role = "admin"
-        else:
-            role = "member"
+            if random_percent >= 0.9:
+                role = "is_superuser"
+            if random_percent >= 0.7 and random_percent < 0.9:
+                role = "admin"
+            else:
+                role = "member"
 
-        email = random_emails.pop()
+            email = chunks_emails.pop()
 
-        random_percent = random.random()
+            random_percent = random.random()
 
-        if random_percent >= 0.5:
-            random_trail = str(int(round((random.random() * 1000))))
-            username = fake.first_name() + random_trail
-        else:
-            username = None
+            if random_percent >= 0.5:
+                random_trail = str(int(round((random.random() * 1000))))
+                username = fake.first_name() + random_trail
+            else:
+                username = None
 
-        fake_datetime = fake.date_time_between(
-            start_date="-1y", end_date="now"
-        ).strftime("%s")
+            fake_datetime = fake.date_time_between(
+                start_date="-1y", end_date="now"
+            ).strftime("%s")
 
-        current_sign_in_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
-            "%Y-%m-%dT%H:%M:%S Z"
-        )
+            current_sign_in_on = datetime.utcfromtimestamp(float(fake_datetime)).strftime(
+                "%Y-%m-%dT%H:%M:%S Z"
+            )
 
-        is_deleted_ = False if random.random()  >= 0.05 else True
+            is_deleted_ = False if random.random()  >= 0.05 else True
 
-        is_active_ = True if random.random()  >= 0.05 else False
+            is_active_ = True if random.random()  >= 0.05 else False
 
-        fname = fake.first_name()
-        lname = fake.last_name()
+            fname = fake.first_name()
+            lname = fake.last_name()
 
-        params = {
-            "created_on": created_on,
-            "updated_on": created_on,
-            "role": role,
-            "email": email,
-            "username": username,
-            "firstname": fname,
-            "lastname": lname,
-            'date_of_birth': DOB,
-            "password": UserModel.encrypt_password("password"),
-            "sign_in_count": random.random() * 100,
-            "current_sign_in_on": current_sign_in_on,
-            "current_sign_in_ip": fake.ipv4(),
-            "last_sign_in_on": current_sign_in_on,
-            "last_sign_in_ip": fake.ipv4(),
-            'is_deleted': is_deleted_,
-            'is_active': is_active_,
-            "phone_number": fake.phone_number(),
-            "gender": random.choice(gender_options),
-        }
-        print(len(data))
-        data.append(params)
+            params = {
+                "created_on": created_on,
+                "updated_on": created_on,
+                "role": role,
+                "email": email,
+                "username": username,
+                "firstname": fname,
+                "lastname": lname,
+                'date_of_birth': DOB,
+                "password": UserModel.encrypt_password("password"),
+                "sign_in_count": random.random() * 100,
+                "current_sign_in_on": current_sign_in_on,
+                "current_sign_in_ip": fake.ipv4(),
+                "last_sign_in_on": current_sign_in_on,
+                "last_sign_in_ip": fake.ipv4(),
+                'is_deleted': is_deleted_,
+                'is_active': is_active_,
+                "phone_number": fake.phone_number(),
+                "gender": random.choice(gender_options),
+            }
+            print(len(data))
+            data.append(params)
 
-    return _bulk_insert(UserModel, data, "users")
+        _bulk_insert(UserModel, data, "users")
+
+    return None # _bulk_insert(UserModel, data, "users")
 
 
 
