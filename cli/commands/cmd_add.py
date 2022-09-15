@@ -56,7 +56,7 @@ def _bulk_insert(model, data, label):
     :return: None
     """
     with app.app_context():
-        model.query.delete()
+        # model.query.delete()
 
         db.session.commit()
         db.engine.execute(model.__table__.insert(), data)
