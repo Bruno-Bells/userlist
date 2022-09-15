@@ -118,7 +118,7 @@ _Below are steps to successfully spin up the project locally._
 6. ```
    docker-compose exec website project add all
    ```
-   `this 6th command will populate the database, by default 1000 users will be generated when you run the command. To change this go to config/settings.py and increase the INITIAL_SEED_COUNT variable. then run this command again.`
+   `this 6th command will populate the database, by default 1000 users will be generated when you run the command. To change this go to config/settings.py and increase/decrease the INITIAL_SEED_COUNT variable. then run this command again.`
 
 7. `open your web browser and enter the following url`
    ```
@@ -130,7 +130,7 @@ _Below are steps to successfully spin up the project locally._
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_To play around with the API, please visit to the [Documentation](http://68.183.115.38:5000/api/docs/) 
+To play around with the API, please visit to the [Documentation](http://68.183.115.38:5000/api/docs/) 
 
 
 <!-- LICENSE -->
