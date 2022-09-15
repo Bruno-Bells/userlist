@@ -80,8 +80,8 @@ class UsersList(Resource):
                 data = multiple_user_schema.dump(page_object.items)
                 # with open('./tit.txt', 'a') as f:
                 #     f.write(f"I'm still adding...")
-                client_side_caching.add(url, data, timeout=60) # client side cache
-                cache.set(url, data, timeout=60) # Server Side Cache
+                client_side_caching.add(url, data, timeout=3600) # client side cache
+                cache.set(url, data, timeout=3600) # Server Side Cache
         
         except:
             ...
