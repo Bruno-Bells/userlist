@@ -101,13 +101,13 @@ def create_app(settings_override=None):
         # click.echo("Working...")
 
         # Ensure we get about 100 unique random emails.
-        for _ in range(0, 100):
+        for _ in range(0, 1000000):
             random_emails.append(fake.email())
             print("emails => ", _)
 
         random_emails = list(set(random_emails))
 
-        chunks = [random_emails[x:x+10] for x in range(0, len(random_emails), 10)]
+        chunks = [random_emails[x:x+100] for x in range(0, len(random_emails), 100)]
 
         for i in range(len(chunks)):
             chunks_emails = chunks[i]
